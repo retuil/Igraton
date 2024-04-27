@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    private const float MoveSpeed = 600;
+    private const float MoveSpeed = 500;
 
     private Rigidbody2D physic;
     private GameObject sprite;

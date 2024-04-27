@@ -50,6 +50,7 @@ public class GameScript : MonoBehaviour
         activeQuestNumber = 2;
         questImage.sprite = questImage2;
         questImage.enabled = true;
+        
     }
 
     public void ProcessQuestZone3()
