@@ -36,7 +36,7 @@ public class GameScript : MonoBehaviour
 
     public void ProcessQuestZone1()
     {
-        if (activeQuestNumber != 0) 
+        if (activeQuestNumber != 0)
             return;
         activeQuestNumber = 1;
         questImage.sprite = questImage1;
@@ -45,7 +45,7 @@ public class GameScript : MonoBehaviour
 
     public void ProcessQuestZone2()
     {
-        if (activeQuestNumber != 1) 
+        if (activeQuestNumber != 1)
             return;
         activeQuestNumber = 2;
         questImage.sprite = questImage2;
@@ -71,7 +71,7 @@ public class GameScript : MonoBehaviour
 
     public void ProcessQuestZone4()
     {
-        if (activeQuestNumber != 3) 
+        if (activeQuestNumber != 3)
             return;
         activeQuestNumber = 4;
         questImage.sprite = questImage4;
@@ -80,7 +80,7 @@ public class GameScript : MonoBehaviour
 
     public void ProcessQuestZone5()
     {
-        if (activeQuestNumber != 5) 
+        if (activeQuestNumber != 5)
             return;
         activeQuestNumber = 6;
         questImage.sprite = questImage5;
@@ -95,5 +95,18 @@ public class GameScript : MonoBehaviour
         questImage4 = Resources.Load<Sprite>("QuestImages/Quest4");
         questImage32 = Resources.Load<Sprite>("QuestImages/Quest3.2");
         questImage5 = Resources.Load<Sprite>("QuestImages/Quest5");
+    }
+
+    public Vector2 GetTargetPosition()
+    {
+        return activeQuestNumber switch
+        {
+            0 => GameObject.Find("QuestZone1").transform.position,
+            1 => GameObject.Find("QuestZone2").transform.position,
+            2 => GameObject.Find("QuestZone3").transform.position,
+            3 => GameObject.Find("QuestZone4").transform.position,
+            4 => GameObject.Find("QuestZone5").transform.position,
+            _ => Vector2.zero
+        };
     }
 }
