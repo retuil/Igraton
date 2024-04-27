@@ -105,7 +105,8 @@ public class GameScript : MonoBehaviour
             1 => GameObject.Find("QuestZone2").transform.position,
             2 => GameObject.Find("QuestZone3").transform.position,
             3 => GameObject.Find("QuestZone4").transform.position,
-            4 => GameObject.Find("QuestZone5").transform.position,
+            4 => GameObject.Find("QuestZone3").transform.position,
+            5 => GameObject.Find("QuestZone5").transform.position,
             _ => Vector2.zero
         };
     }
