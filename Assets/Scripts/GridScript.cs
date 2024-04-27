@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class GridScript : MonoBehaviour
 {
+    public GameObject LeftBottomStartRoom;
+    public GameObject RightUpStartRoom;
+    
     void Start()
     {
-        // RotateTileMap();
+        LeftBottomStartRoom = GameObject.Find("LeftBottomStartRoom");
+        RightUpStartRoom = GameObject.Find("RightUpStartRoom");
     }
 
     public void RotateTileMap()
