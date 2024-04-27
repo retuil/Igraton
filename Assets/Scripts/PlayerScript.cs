@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    private const float moveSpeed = 10;
+    private const float moveSpeed = 400;
+
+    private Rigidbody2D physic;
 
     private void Start()
     {
         StartCoroutine(FixedUpdateCoroutine());
+        physic = GetComponent<Rigidbody2D>();
     }
 
     private IEnumerator FixedUpdateCoroutine()
@@ -26,6 +29,8 @@ public class PlayerScript : MonoBehaviour
         var verticalInput = Input.GetAxis("Vertical");
 
         var movement = new Vector3(horizontalInput, verticalInput, 0f) * (moveSpeed * Time.fixedDeltaTime);
-        transform.Translate(movement);
+        physic.velocity = movement;
+        
+        // transform.Translate(movement);
     }
 }
