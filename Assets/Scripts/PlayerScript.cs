@@ -31,6 +31,7 @@ public class PlayerScript : MonoBehaviour
     private IEnumerator FixedUpdateCoroutine()
     {
         yield return new WaitForFixedUpdate();
+        game.ShowQuest0Image();
         while (true)
         {
             MovementLogic();

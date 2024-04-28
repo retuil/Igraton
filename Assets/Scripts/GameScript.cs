@@ -11,6 +11,7 @@ public class GameScript : MonoBehaviour
     public Image questImage;
     public GridScript grid;
 
+    public Sprite questImage0;
     public Sprite questImage1;
     public Sprite questImage2;
     public Sprite questImage3;
@@ -36,17 +37,28 @@ public class GameScript : MonoBehaviour
         questImage = GameObject.Find("QuestImage").GetComponent<Image>();
         questImage.enabled = false;
         StartCoroutine(FixedUpdateCoroutine());
-        LoadQuestImages();
+        if (Tunnel1 == null)
+            LoadQuestImages();
         InitTileMap();
+
+        Debug.Log(questImage0);
     }
 
     private IEnumerator FixedUpdateCoroutine()
     {
         yield return new WaitForFixedUpdate();
+        var p = 0;
         while (true)
         {
-            if (questImage.enabled && Input.anyKey)
-                questImage.enabled = false;
+            Debug.Log(p);
+            if (p == 1 || questImage.enabled && Input.anyKey)
+            {
+                if (p <= 6 && questImage.sprite.name.Contains('0'))
+                    p += 1;
+                else
+                    questImage.enabled = false;
+            }
+
             yield return new WaitForFixedUpdate();
         }
     }
@@ -109,8 +121,8 @@ public class GameScript : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         winScreen.gameObject.SetActive(true);
-        
     }
+
     public void ProcessQuestZone5()
     {
         if (activeQuestNumber != 5)
@@ -124,7 +136,8 @@ public class GameScript : MonoBehaviour
 
     private void InitTileMap()
     {
-        var tileMaps = grid.GetComponentsInChildren<Tilemap>().Where(t => t.name.Contains("Tunnel")).OrderBy(t => t.name).ToArray();
+        var tileMaps = grid.GetComponentsInChildren<Tilemap>().Where(t => t.name.Contains("Tunnel"))
+            .OrderBy(t => t.name).ToArray();
         Debug.Log(string.Join(" ", tileMaps.Select(r => r.ToString())));
         Tunnel1 = tileMaps[0];
         Tunnel2 = tileMaps[1];
@@ -141,6 +154,7 @@ public class GameScript : MonoBehaviour
 
     private void LoadQuestImages()
     {
+        questImage0 = Resources.Load<Sprite>("QuestImages/Quest0");
         questImage1 = Resources.Load<Sprite>("QuestImages/Quest1");
         questImage2 = Resources.Load<Sprite>("QuestImages/Quest2");
         questImage3 = Resources.Load<Sprite>("QuestImages/Quest3");
@@ -161,5 +175,13 @@ public class GameScript : MonoBehaviour
             5 => GameObject.Find("QuestZone5").transform.position,
             _ => Vector2.zero
         };
+    }
+
+    public void ShowQuest0Image()
+    {
+        Debug.Log(questImage);
+        Debug.Log(questImage0);
+        questImage.sprite = questImage0;
+        questImage.enabled = true;
     }
 }
