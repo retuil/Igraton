@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -23,7 +24,7 @@ public class GameScript : MonoBehaviour
     public Tilemap Tunnel4;
     public Tilemap Tunnel5;
     public Tilemap Tunnel6;
-
+    public GameObject cam, player;
 
     private void Start()
     {
