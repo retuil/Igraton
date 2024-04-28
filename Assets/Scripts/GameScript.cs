@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour
 {
-    private int activeQuestNumber;
+    public int activeQuestNumber;
     public Image questImage;
     public GridScript grid;
 
@@ -24,6 +24,8 @@ public class GameScript : MonoBehaviour
     public Tilemap Tunnel4;
     public Tilemap Tunnel5;
     public Tilemap Tunnel6;
+
+    [SerializeField] private GameObject winScreen;
     public GameObject cam, player;
 
     private void Start()
@@ -103,6 +105,12 @@ public class GameScript : MonoBehaviour
         questImage.enabled = true;
     }
 
+    public IEnumerator asd()
+    {
+        yield return new WaitForSeconds(5);
+        winScreen.gameObject.SetActive(true);
+        
+    }
     public void ProcessQuestZone5()
     {
         if (activeQuestNumber != 5)
@@ -111,6 +119,7 @@ public class GameScript : MonoBehaviour
         Tunnel6.gameObject.SetActive(false);
         questImage.sprite = questImage5;
         questImage.enabled = true;
+        StartCoroutine(asd());
     }
 
     private void InitTileMap()

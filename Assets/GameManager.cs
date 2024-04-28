@@ -5,6 +5,8 @@ using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject loseScreen;
     private float visionLong = 10f, visionShort = 3f;
     private float minvisionLong = 4.5f, minvisionShort = 1.5f;
     public GameObject lightLong, lightShort;
@@ -17,6 +19,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ResumeTime()
+    {
+        Time.timeScale = 1;
     }
 
     private IEnumerator Restore(float memvisionLong, float memvisionShort, float time)
@@ -42,4 +49,16 @@ public class GameManager : MonoBehaviour
         lightLong.GetComponent<Light2D>().pointLightOuterRadius = visionLong;
         lightShort.GetComponent<Light2D>().pointLightOuterRadius = visionShort;
     }
+
+    [SerializeField] private GameObject[] spawnPoints;
+    [SerializeField] private GameObject game;
+    private int current_location = 0;
+    public void Death()
+    {
+        Time.timeScale = 0;
+        loseScreen.SetActive(true);
+        player.gameObject.transform.position = spawnPoints[game.gameObject.GetComponent<GameScript>().activeQuestNumber].transform.position;
+        player.gameObject.GetComponent<HealthPoints>().Prepare();
+    }
+    
 }
