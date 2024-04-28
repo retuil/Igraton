@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthPoints : MonoBehaviour
 {
     [SerializeField] private GameObject gameManager;
-    private int _max_health = 3;
-    public int health = 42;
+    public int _max_health = 3;
+    public int health = 3;
     private bool _неуязвимый = false;
     public void Prepare()
     {
@@ -21,7 +22,7 @@ public class HealthPoints : MonoBehaviour
     }
     
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (_неуязвимый)
         {
@@ -39,6 +40,7 @@ public class HealthPoints : MonoBehaviour
         {
             health--;
             _неуязвимый = true;
+            Invoke("НеНеуязвимый",1);
             Destroy(other.gameObject);
         }
         if (health==0)

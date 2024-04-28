@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     private int current_location = 0;
     public void Death()
     {
+        HealthPoints h = player.GetComponent<HealthPoints>();
+        h.health = h._max_health;
         Time.timeScale = 0;
         loseScreen.SetActive(true);
         player.gameObject.transform.position = spawnPoints[game.gameObject.GetComponent<GameScript>().activeQuestNumber].transform.position;

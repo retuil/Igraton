@@ -8,6 +8,7 @@ TagManager:
   - Game
   - LevelEnd
   - Enemy
+  - Attack
   layers:
   - Default
   - TransparentFX

@@ -45,7 +45,7 @@ public class GameScript : MonoBehaviour
         yield return new WaitForFixedUpdate();
         while (true)
         {
-            if (questImage.enabled && Input.GetKey(KeyCode.Space))
+            if (questImage.enabled && Input.anyKey)
                 questImage.enabled = false;
             yield return new WaitForFixedUpdate();
         }
