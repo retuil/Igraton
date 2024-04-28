@@ -41,7 +41,7 @@ public class HealthPoints : MonoBehaviour
             health--;
             _неуязвимый = true;
             Invoke("НеНеуязвимый",1);
-            Destroy(other.gameObject);
+            other.GetComponent<BadScript>().De();
         }
         if (health==0)
         {

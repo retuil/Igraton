@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -45,7 +46,9 @@ public class GameScript : MonoBehaviour
         yield return new WaitForFixedUpdate();
         while (true)
         {
-            if (questImage.enabled && Input.anyKey)
+            if (questImage.enabled && (Input.GetKey(KeyCode.Space) ||
+                                       Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Return) ||
+                                       Input.GetMouseButton(0) || Input.GetMouseButton(1)))
                 questImage.enabled = false;
             yield return new WaitForFixedUpdate();
         }
