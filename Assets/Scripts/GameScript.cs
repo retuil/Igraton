@@ -48,8 +48,7 @@ public class GameScript : MonoBehaviour
         while (true)
         {
             if (questImage.enabled && (Input.GetKey(KeyCode.Space) ||
-                                       Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Return) ||
-                                       Input.GetMouseButton(0) || Input.GetMouseButton(1)))
+                                       Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Return)))
                 questImage.enabled = false;
             yield return new WaitForFixedUpdate();
         }
@@ -171,8 +170,6 @@ public class GameScript : MonoBehaviour
 
     public void ShowQuest0Image()
     {
-        Debug.Log(questImage);
-        Debug.Log(questImage0);
         questImage.sprite = questImage0;
         questImage.enabled = true;
     }
